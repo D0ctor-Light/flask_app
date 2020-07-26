@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
+import requests
 
 
 app = Flask(__name__)
@@ -36,10 +37,12 @@ def post():
 def get():
     req = request.args.get('id')
     test = Data.query.filter_by(id=req).first()
-    print(test.url)
 
     return jsonify(data=test.url, val=test.res)
 
 
 def crawler(url):
-    request.get(url)
+    if 'http' not in url:
+        url = 'http://' + url
+    return requests.get(url).content
+
