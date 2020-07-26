@@ -1,0 +1,24 @@
+version: '3.7'
+
+services:
+  web:
+    build: ./core/web
+    command: python manage.py run -h 0.0.0.0
+    volumes:
+      - ./core/web/:/usr/src/app/
+    ports:
+      - 5000:5000
+    env_file:
+      - ./.env.dev
+
+  db:
+    image: postgres:12-alpine
+    volumes:
+      - pg_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=doc
+      - POSTGRES_PASSWORD=doc2020
+      - POSTGRES_DB=doc_dev
+
+volumes:
+  pg_data:
