@@ -20,7 +20,7 @@ Uses gunicorn + nginx.
     $ docker-compose -f docker-compose.prod.yml up -d --build
     ```
 
-    Test it out at [http://localhost:1337]
+    Test it out at [http://localhost:5000]
     
     
     send post query with form data, where {'url' = example.com } on http://localhost:5000/api/v1
