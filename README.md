@@ -26,5 +26,5 @@ Uses gunicorn + nginx.
     send post query with form data, where {'url' = example.com } on http://localhost:5000/api/v1
     if url is avaliable you will get an id of task
     
-    send the adress get query with url, params 'id' from 'post' query http://localhost:1337?id=1
+    send the adress get query with url, params 'id' from 'post' query http://localhost:5000?id=1
     will returned url, and parse website by requests lib.
