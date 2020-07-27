@@ -62,5 +62,3 @@ def crawler(url):
     except requests.exceptions.RequestException:
         app.logger.error('url not responding')
         return abort(403, 'given url not responding')
-
-

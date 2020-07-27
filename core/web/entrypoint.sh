@@ -12,6 +12,11 @@ then
 
 fi
 
-python manage.py create_db
+if [ "$FLASK_ENV" = "development" ]
+then
+    echo "Creating the database"
+    python manage.py create_db
+    echo "created"
+fi
 
 exec "$@"
