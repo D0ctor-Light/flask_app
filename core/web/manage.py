@@ -1,5 +1,5 @@
 from flask.cli import FlaskGroup
-from timeweb.web import app, db, Data
+from timeweb.web import app, db
 
 
 cli = FlaskGroup(app)
