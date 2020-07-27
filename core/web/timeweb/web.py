@@ -37,7 +37,7 @@ def post():
     return jsonify(id=data.id)
 
 
-@app.route('/api/v1/get')
+@app.route('/api/v1/')
 def get():
     req = request.args.get('id')
     fin = Data.query.filter_by(id=req).first()
@@ -45,7 +45,7 @@ def get():
     fin.res = parse
     db.session.commit()
 
-    return jsonify(data=fin.url, html=fin.res)
+    return jsonify(url=fin.url, html=fin.res)
 
 
 def crawler(url):
