@@ -1,12 +1,14 @@
 from flask import Flask, jsonify, request, abort
 from flask_sqlalchemy import SQLAlchemy
 import requests
+import logging
 
 
 app = Flask(__name__)
 app.config['DEBUG'] = False
 app.config.from_object('timeweb.config.Config')
 db = SQLAlchemy(app)
+logging.basicConfig(filename='demo.log', level=logging.ERROR)
 
 
 class Data(db.Model):
@@ -28,6 +30,7 @@ def hello_world():
 @app.route('/api/v1', methods=['POST'])
 def post():
     if request.form.get('url') is None:
+        app.logger.error('sended empty url value')
         abort(400, 'url is empty')
 
     data = Data(request.form.get('url'))
@@ -57,6 +60,7 @@ def crawler(url):
         return data.content
 
     except requests.exceptions.RequestException:
+        app.logger.error('url not responding')
         return abort(403, 'given url not responding')
 
 
